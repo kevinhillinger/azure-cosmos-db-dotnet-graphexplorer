@@ -14,7 +14,7 @@ cat > conn_info.json << EOF
 {
     "accountName": "${account_name}",
     "databaseName": "${database_name}",
-    "graphName": "${database_name}",
+    "graphName": "${graph_name}",
     "gremlinEndpoint": "${gremlin_endpoint}",
     "authenticationKey": "${auth_key}"
 }
