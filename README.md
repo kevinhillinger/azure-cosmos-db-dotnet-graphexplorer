@@ -31,7 +31,7 @@ This sample application shows how to interact with Azure's [Cosmos DB Gremlin AP
 ### Prerequisites
 To run the sample locally, you will need the following tools. 
 
-    > NOTE: All required tools for this sample are cross-platform, and can be run using either Windows, MacOS, or Linux (x64).
+> NOTE: All required tools for this sample are cross-platform, and can be run using either Windows, MacOS, or Linux (x64).
 
 #### Required
 * [.NET Core](https://dotnet.microsoft.com/download)
