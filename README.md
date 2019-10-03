@@ -34,22 +34,22 @@ To run the sample locally, you will need the following required Azure resources 
 > NOTE: All required tools for this sample are cross-platform, and can be run using either Windows, MacOS, or Linux (x64).
 
 #### Required
-* [.NET Core](https://dotnet.microsoft.com/download)
-* [Node.js (LTS)](https://nodejs.org/en/download/)
 * [Azure Account](https://azure.microsoft.com/en-us/free/)
+* [.NET Core 3.0+](https://dotnet.microsoft.com/download)
+* [Node.js (LTS 12.16.3+)](https://nodejs.org/en/download/)
 * [A Cosmos DB Account](./scripts/setup.sh)
+* [Azure Cloud Shell](https://shell.azure.com/) 
 
 #### Suggested
 While optional, Visual Studio Code (VSCode) is suggested to explore the code further in this sample. If you already have Visual Studio 2019, it can be used for this sample.
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Visual Studio 2019 (Optional)](https://visualstudio.microsoft.com/vs/)
-* [Azure CLI (Optional)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-* Git (to clone the repository locally or within the environment of your choice)
+* [Azure CLI (Optional)](https://docs.microsoft.com/en-us/cli/azure/
 
 ##  Getting Started
 
-The will need the following setup to get started:
+You will need the following things to get started:
 
 * A Cosmos DB Account
 * A database (within the account)
@@ -60,25 +60,32 @@ Scripts have been provided in this sample, and the resources created in it will 
 
 #### A note on scripts in this sample
 
-You have a few options using the scripts. Pick the one that you're most comfortable with.
-
-1. Execute locally.
-    > After performing a ```git clone``` of this repository, execute the scripts locally in a bash shell after executing an ```az login``` on the Azure CLI. You will need [*jq* (JSON command-line parser)](https://stedolan.github.io/jq/) for some of the scripts. If you do not have access to a bash shell, use the options #2 below.
-
-2. Execute the scripts in Azure's [Cloud Shell](https://shell.azure.com/) (web-based terminal) which comes with Azure CLI and all needed libraries and execute the scripts in a Bash instance.
+__Execute the scripts in Azure's [Cloud Shell](https://shell.azure.com/) (web-based terminal)__ - it comes with Azure CLI and all needed tools and execute the scripts in a Bash instance.
 
 > NOTE: Don't forget that the scripts must be made executable in either option, for example ```chmod x+ <the script file path>```.
+
+### 0. Clone the sample repository 
+
+In Cloud Shell, execute the following:
+
+```bash
+git clone https://github.com/Azure-Samples/azure-cosmos-db-dotnet-graphexplorer.git
+
+cd azure-cosmos-db-dotnet-graphexplorer
+
+# make the scripts executable
+for scriptFile in $(ls -1 scripts/); do
+    chmod +x scripts/$scriptFile
+done
+```
 
 ### 1. Setup Cosmos DB 
 
 A bash script ```scripts/setup.sh``` has been provided in this getting started that will perform the setup of the account, database, and graph for you! 
 
 ```bash
-# Assumed a git clone has been done
-
-cd azure-cosmos-db-dotnet-graphexplorer
-chmod +x ./scripts/setup.sh
-./setup.sh
+# execute the setup script within azure-cosmos-db-dotnet-graphexplorer
+./scripts/setup.sh
 ```
 
 ### 2. Get The Connection Info
@@ -90,15 +97,9 @@ chmod +x ./scripts/setup.sh
 
 The connection information needed for the demo can be found in the Azure Portal on the the instance blade of the Cosmos DB account. Alternatively, execute the below to get this information.
 
-```
-resource_group_name=explore-cosmosdb-gremlin 
-database_name=db
-graph_name=graph
-
-account_name=$(az cosmosdb list -g $resource_group_name -o tsv --query '[].name' | grep explorecosmos-)
-gremlin_endpoint="wss://${account_name}.gremlin.cosmos.azure.com:443/"
-auth_key=$(az cosmosdb keys list --name $account_name --resource-group $resource_group_name --type keys -o tsv --query 'primaryMasterKey')
-
+```bash
+# execute the info script within azure-cosmos-db-dotnet-graphexplorer
+./scripts/info.sh
 ```
 
 ### 3. Insert the sample data
