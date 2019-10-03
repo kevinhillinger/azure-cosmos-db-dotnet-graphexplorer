@@ -29,7 +29,7 @@ This sample application shows how to interact with Azure's [Cosmos DB Gremlin AP
 * Using the local development option of Cosmos DB Gremlin API
 
 ### Prerequisites
-To run the sample locally, you will need the following tools. 
+To run the sample locally, you will need the following required Azure resources and tools. 
 
 > NOTE: All required tools for this sample are cross-platform, and can be run using either Windows, MacOS, or Linux (x64).
 
@@ -58,16 +58,16 @@ The will need the following setup to get started:
 
 Scripts have been provided in this sample, and the resources created in it will be referenced throughout. 
 
-    #### A note on scripts in this sample
+#### A note on scripts in this sample
 
-    You have a few options using the scripts. Pick the one that you're most comfortable with.
+You have a few options using the scripts. Pick the one that you're most comfortable with.
 
-    1. Execute locally.
-        > After performing a ```git clone``` of this repository, execute the scripts locally in a bash shell after executing an ```az login``` on the Azure CLI. You will need [*jq* (JSON command-line parser)](https://stedolan.github.io/jq/) for some of the scripts. If you do not have access to a bash shell, use the options #2 below.
+1. Execute locally.
+    > After performing a ```git clone``` of this repository, execute the scripts locally in a bash shell after executing an ```az login``` on the Azure CLI. You will need [*jq* (JSON command-line parser)](https://stedolan.github.io/jq/) for some of the scripts. If you do not have access to a bash shell, use the options #2 below.
 
-    2. Execute the scripts in Azure's [Cloud Shell](https://shell.azure.com/) (web-based terminal) which comes with Azure CLI and all needed libraries and execute the scripts in a Bash instance.
+2. Execute the scripts in Azure's [Cloud Shell](https://shell.azure.com/) (web-based terminal) which comes with Azure CLI and all needed libraries and execute the scripts in a Bash instance.
 
-    > NOTE: Don't forget that the scripts must be made executable in either option, for example ```chmod x+ <the script file path>```.
+> NOTE: Don't forget that the scripts must be made executable in either option, for example ```chmod x+ <the script file path>```.
 
 ### 1. Setup Cosmos DB 
 
