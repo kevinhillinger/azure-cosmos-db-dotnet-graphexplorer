@@ -1,6 +1,6 @@
 ---
 page_type: sample
-description: "This sample application shows how to interact with Azure CosmosDB Gremlin (Graph) API and visualize the results."
+description: "This sample shows how to interact with Azure CosmosDB Gremlin (Graph) API and visualize the results."
 languages:
 - csharp
 - nodejs
@@ -12,22 +12,97 @@ products:
 - dotnet
 ---
 
-# A Guided Tour of Azure Cosmos DB Gremlin API
+# Exploring Cosmos DB Gremlin API
 
-This sample application shows how to interact with Azure CosmosDB Gremlin (Graph) API and visualize the results.  The query language used is [Gremlin](https://en.wikipedia.org/wiki/Gremlin_(programming_language)) which is a [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) traversal language that uses vertices and edges as primary constructs.  This sample shows how to put your data into Cosmos DB through a console application using the Azure DocumentDB graph library as well as querying the data using the Gremlin language specification from a user interface.
+This sample application shows how to interact with Azure's [Cosmos DB Gremlin API](https://docs.microsoft.com/en-us/azure/cosmos-db/graph-introduction) and visualize the results.  [Gremlin](http://tinkerpop.apache.org/gremlin.html) is the graph traversal language of [TinkerPop](http://tinkerpop.apache.org/) for interacting with vertices and edges in a [graph database](https://en.wikipedia.org/wiki/Graph_database).
 
-## Prerequisites ##
-* Visual Studio 2015 Update 3 or later.
-* Node.js which can be downloaded here: <a href="https://nodejs.org/dist/v6.10.2/node-v6.10.2-x64.msi">https://nodejs.org/dist/v6.10.2/node-v6.10.2-x64.msi</a>
+## Contents
 
+* Inserting data into Cosmos DB using the [Gremlin.NET](http://tinkerpop.apache.org/dotnetdocs/3.4.3/) driver
+* Querying the data using Gremlin
+* Using the local development option of Cosmos DB Gremlin API
 
-## Contents of the Sample ##
-The Sample has two projects:
-* A console application for uploading some sample data into Cosmos DB.
-* An ASP.NET MVC front-end application that shows how to query the graph using the Gremlin language.
+## Overview 
 
-## How to run the sample ##
-### Uploading the sample data ###
+* Inserting data into Cosmos DB using the [Gremlin.NET](http://tinkerpop.apache.org/dotnetdocs/3.4.3/) driver
+* Querying the data using Gremlin
+* Using the local development option of Cosmos DB Gremlin API
+
+### Prerequisites
+To run the sample locally, you will need the following tools. 
+
+    > NOTE: All required tools for this sample are cross-platform, and can be run using either Windows, MacOS, or Linux (x64).
+
+#### Required
+* [.NET Core](https://dotnet.microsoft.com/download)
+* [Node.js (LTS)](https://nodejs.org/en/download/)
+* [Azure Account](https://azure.microsoft.com/en-us/free/)
+* [A Cosmos DB Account](./scripts/setup.sh)
+
+#### Suggested
+While optional, Visual Studio Code (VSCode) is suggested to explore the code further in this sample. If you already have Visual Studio 2019, it can be used for this sample.
+
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Visual Studio 2019 (Optional)](https://visualstudio.microsoft.com/vs/)
+* [Azure CLI (Optional)](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+* Git (to clone the repository locally or within the environment of your choice)
+
+##  Getting Started
+
+The will need the following setup to get started:
+
+* A Cosmos DB Account
+* A database (within the account)
+* A graph container (within the database, sometimes referred to as the *collection*)
+* Finally, the connection information to connect to the graph
+
+Scripts have been provided in this sample, and the resources created in it will be referenced throughout. 
+
+    #### A note on scripts in this sample
+
+    You have a few options using the scripts. Pick the one that you're most comfortable with.
+
+    1. Execute locally.
+        > After performing a ```git clone``` of this repository, execute the scripts locally in a bash shell after executing an ```az login``` on the Azure CLI. You will need [*jq* (JSON command-line parser)](https://stedolan.github.io/jq/) for some of the scripts. If you do not have access to a bash shell, use the options #2 below.
+
+    2. Execute the scripts in Azure's [Cloud Shell](https://shell.azure.com/) (web-based terminal) which comes with Azure CLI and all needed libraries and execute the scripts in a Bash instance.
+
+    > NOTE: Don't forget that the scripts must be made executable in either option, for example ```chmod x+ <the script file path>```.
+
+### 1. Setup Cosmos DB 
+
+A bash script ```scripts/setup.sh``` has been provided in this getting started that will perform the setup of the account, database, and graph for you! 
+
+```bash
+# Assumed a git clone has been done
+
+cd azure-cosmos-db-dotnet-graphexplorer
+chmod +x ./scripts/setup.sh
+./setup.sh
+```
+
+### 2. Get The Connection Info
+
+* Gremlin endpoint (format *wss://{account}.gremlin.cosmos.azure.com:443/*)
+* Authentication key
+* Database name 
+* Graph name
+
+The connection information needed for the demo can be found in the Azure Portal on the the instance blade of the Cosmos DB account. Alternatively, execute the below to get this information.
+
+```
+resource_group_name=explore-cosmosdb-gremlin 
+database_name=db
+graph_name=graph
+
+account_name=$(az cosmosdb list -g $resource_group_name -o tsv --query '[].name' | grep explorecosmos-)
+gremlin_endpoint="wss://${account_name}.gremlin.cosmos.azure.com:443/"
+auth_key=$(az cosmosdb keys list --name $account_name --resource-group $resource_group_name --type keys -o tsv --query 'primaryMasterKey')
+
+```
+
+### 3. Insert the sample data
+
 Uploading the sample data is done via the console application project included in this quick start. The sample app is already configured to point to your collection you created as part of the quick start experience in the portal.
 2. Open the <font color='lightblue'>/tools/GraphDataUploaderSample.sln</font> solution in Visual Studio.
 3. Verify your collection information in the App.Config. if you downloaded this sample from Azure portal quickstart blade, this is all already pre-configured for you. If you downloaded the sample from the github, you need to create the collection yourself and set these settings.
