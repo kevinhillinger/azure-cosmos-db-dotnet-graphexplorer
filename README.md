@@ -16,6 +16,8 @@ products:
 
 This sample application shows how to interact with Azure's [Cosmos DB Gremlin API](https://docs.microsoft.com/en-us/azure/cosmos-db/graph-introduction) and visualize the results.  [Gremlin](http://tinkerpop.apache.org/gremlin.html) is the graph traversal language of [TinkerPop](http://tinkerpop.apache.org/) for interacting with vertices and edges in a [graph database](https://en.wikipedia.org/wiki/Graph_database).
 
+More information can be found here on [graph data modeling for Azure Cosmos DB Gremlin API](https://docs.microsoft.com/en-us/azure/cosmos-db/graph-modeling)
+
 ## Contents
 
 * Inserting data into Cosmos DB using the [Gremlin.NET](http://tinkerpop.apache.org/dotnetdocs/3.4.3/) driver

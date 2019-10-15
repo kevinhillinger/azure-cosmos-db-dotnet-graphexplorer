@@ -20,7 +20,7 @@ cat > conn_info.json << EOF
 }
 EOF
 
-echo "JSON for the environment you will run the sample:"
+echo "Setting in JSON for the environment you will run the sample:"
 echo
 
 cat conn_info.json
