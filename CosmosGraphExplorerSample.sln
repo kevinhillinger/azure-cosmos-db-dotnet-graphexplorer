@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.584
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphDataUploaderSample", "src\graphdata\GraphDataUploaderSample.csproj", "{308CD8E5-A5F7-4222-8F88-00B3093AB133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosGraphExplorerSample.DataLoader", "src\CosmosGraphExplorerSample.DataLoader\CosmosGraphExplorerSample.DataLoader.csproj", "{D475F88D-D063-45C4-BC5B-358CBF32BDD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{308CD8E5-A5F7-4222-8F88-00B3093AB133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308CD8E5-A5F7-4222-8F88-00B3093AB133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308CD8E5-A5F7-4222-8F88-00B3093AB133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308CD8E5-A5F7-4222-8F88-00B3093AB133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D475F88D-D063-45C4-BC5B-358CBF32BDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D475F88D-D063-45C4-BC5B-358CBF32BDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D475F88D-D063-45C4-BC5B-358CBF32BDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D475F88D-D063-45C4-BC5B-358CBF32BDD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D389FB0-BC50-40B7-92C9-A1BFF3A4FC0E}
+	EndGlobalSection
+EndGlobal
