@@ -21,7 +21,7 @@ az cosmosdb create -n $account_name -g $resource_group \
 
 # Create the database
 az cosmosdb gremlin database create -a $account_name -g $resource_group \
-    -n $database_name --no-wait
+    -n $database_name 
 
 # Create the graph
 
