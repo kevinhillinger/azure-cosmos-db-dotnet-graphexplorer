@@ -43,11 +43,10 @@ To run the sample locally, you will need the following required Azure resources 
 * [Azure Cloud Shell](https://shell.azure.com/) 
 
 #### Suggested
-While optional, Visual Studio Code (VSCode) is suggested to explore the code further in this sample. If you already have Visual Studio 2019, it can be used for this sample.
+While optional, Visual Studio Code (VSCode) is suggested to explore the code further in this sample. If you already have Visual Studio 2019, it can be used as well for this sample.
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Visual Studio 2019 (Optional)](https://visualstudio.microsoft.com/vs/)
-* [Azure CLI (Optional)](https://docs.microsoft.com/en-us/cli/azure/
 
 ##  Getting Started
 
@@ -64,45 +63,39 @@ Scripts have been provided in this sample, and the resources created in it will 
 
 __Execute the scripts in Azure's [Cloud Shell](https://shell.azure.com/) (web-based terminal)__ - it comes with Azure CLI and all needed tools and execute the scripts in a Bash instance.
 
-> NOTE: Don't forget that the scripts must be made executable in either option, for example ```chmod x+ <the script file path>```.
-
-### 0. Clone the sample repository 
+### 1. Clone the sample repository 
 
 In Cloud Shell, execute the following:
 
 ```bash
 git clone https://github.com/Azure-Samples/azure-cosmos-db-dotnet-graphexplorer.git
-
 cd azure-cosmos-db-dotnet-graphexplorer
 
-# make the scripts executable
-for scriptFile in $(ls -1 scripts/); do
-    chmod +x scripts/$scriptFile
-done
-```
+### 2. Setup Cosmos DB 
 
-### 1. Setup Cosmos DB 
-
-A bash script ```scripts/setup.sh``` has been provided in this getting started that will perform the setup of the account, database, and graph for you! 
+A bash script ```scripts/setup.sh``` has been provided in this samplethat will perform the setup of the account, database, and graph for you! 
 
 ```bash
-# execute the setup script within azure-cosmos-db-dotnet-graphexplorer
 ./scripts/setup.sh
 ```
 
-### 2. Get The Connection Info
+### 3. Get the connection info
+
+In order to connect to the Cosmos DB Gremlin API, you'll need the following:
 
 * Gremlin endpoint (format *wss://{account}.gremlin.cosmos.azure.com:443/*)
 * Authentication key
 * Database name 
 * Graph name
 
-The connection information needed for the demo can be found in the Azure Portal on the the instance blade of the Cosmos DB account. Alternatively, execute the below to get this information.
+Execute the __info__ script to get this information (the connection information needed for the demo can be found in the Azure Portal on the the instance blade of the Cosmos DB account).
 
 ```bash
-# execute the info script within azure-cosmos-db-dotnet-graphexplorer
-./scripts/info.sh
+./scripts/connection-info.sh
 ```
+
+### 4. Insert the sample data
+
 
 ### 3. Insert the sample data
 
